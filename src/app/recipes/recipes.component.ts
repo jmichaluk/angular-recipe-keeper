@@ -13,18 +13,11 @@ export class RecipesComponent implements OnInit {
 
   recipes: Recipe[] = [];
 
-  selectedRecipe?: Recipe
-
   constructor(private recipeService: RecipeService, 
     private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.getRecipes();
-  }
-
-  onSelect(recipe: Recipe): void {
-    this.selectedRecipe = recipe
-    this.messageService.add(`RecipesComponent: Selected recipe id=${recipe.id}`);
   }
 
   getRecipes(): void {
