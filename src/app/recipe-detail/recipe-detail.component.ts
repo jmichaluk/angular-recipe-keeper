@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, ViewChild} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -30,6 +30,13 @@ export class RecipeDetailComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.recipeService.getRecipe(id)
       .subscribe(recipe => this.recipe = recipe);
+  }
+
+  save(): void {
+    if (this.recipe) {
+      this.recipeService.updateRecipe(this.recipe)
+      .subscribe(() => this.goBack());
+    }
   }
 
   goBack(): void {
